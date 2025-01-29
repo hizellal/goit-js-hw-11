@@ -58,9 +58,9 @@ const onBtnSubmit = event => {
         return response.json();
     })
     .then(data => {
-        if (data.hits.length === 0) {
+        //if (data.hits.length === 0) {
+        if (data.hits.length === 0 || !searchedImage) {
             iziToast.error({
-                title: 'Error',
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
                 color: '#ef4040',
