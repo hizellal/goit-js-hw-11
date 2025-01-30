@@ -17,7 +17,7 @@ const hideLoader = () => {
 };
 
 const loadGallery = imgInfo => {
-    console.log(imgInfo);
+    //console.log(imgInfo);
     return `
     <li class='gallery-images'>
     <a href='${imgInfo.largeImageURL}'>
@@ -42,6 +42,17 @@ const onBtnSubmit = event => {
 
     const searchedImage = event.currentTarget.elements.user_query.value.trim();
     //console.log(searchedImage);
+    gallery.innerHTML = '';
+
+    if (!searchedImage) {
+        iziToast.error({
+            message: 'Please enter a search query!',
+            position: 'topRight',
+            color: '#ef4040',
+        });
+        return;
+    }
+
     showLoader();
 
     fetch(`https://pixabay.com/api/?key=48415738-453a35c27b5ce388251d5c099&q=${searchedImage}&image_type=photo`)
@@ -58,8 +69,8 @@ const onBtnSubmit = event => {
         return response.json();
     })
     .then(data => {
-        //if (data.hits.length === 0) {
-        if (data.hits.length === 0 || !searchedImage) {
+        if (data.hits.length === 0) {
+        //if (data.hits.length === 0 || !searchedImage) {
             iziToast.error({
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
