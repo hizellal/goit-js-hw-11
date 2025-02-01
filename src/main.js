@@ -55,7 +55,7 @@ const onBtnSubmit = event => {
 
     showLoader();
 
-    fetch(`https://pixabay.com/api/?key=48415738-453a35c27b5ce388251d5c099&q=${searchedImage}&image_type=photo`)
+    fetch(`https://pixabay.com/api/?key=48415738-453a35c27b5ce388251d5c099&q=${searchedImage}&image_type=photo&orientation=horizontal&safesearch=true`)
     .then(response => {
         if (!response.ok) {
           iziToast.error({
